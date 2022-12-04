@@ -24,7 +24,7 @@ public class EmployeeBook {
         return sum;
     }
 
-    public void employeeWithMinSalary() {
+    public int minSalary() {
         int min = sumOfSalaries();
         for (Employee employee : employees) {
             if (employee != null)
@@ -32,6 +32,11 @@ public class EmployeeBook {
                     min = employee.getSalary();
                 }
         }
+        return min;
+    }
+
+    public void printEmployeeWithMinSalary() {
+        int min = minSalary();
         System.out.println("Сотрудники с минимальной зарплатой: ");
         for (Employee employee : employees) {
             if (employee != null && min == employee.getSalary()) {
@@ -41,6 +46,16 @@ public class EmployeeBook {
     }
 
     public void employeeWithMaxSalary() {
+        int max = getMaxSalary();
+        System.out.println("Сотрудники с максимальной зарплатой: ");
+        for (Employee employee : employees) {
+            if (employee != null && max == employee.getSalary()) {
+                System.out.println(employee.getFirstName() + " " + employee.getMiddleName() + " " + employee.getLastName());
+            }
+        }
+    }
+
+    private int getMaxSalary() {
         int max = 0;
         for (Employee employee : employees) {
             if (employee != null)
@@ -48,12 +63,7 @@ public class EmployeeBook {
                     max = employee.getSalary();
                 }
         }
-        System.out.println("Сотрудники с максимальной зарплатой: ");
-        for (Employee employee : employees) {
-            if (employee != null && max == employee.getSalary()) {
-                System.out.println(employee.getFirstName() + " " + employee.getMiddleName() + " " + employee.getLastName());
-            }
-        }
+        return max;
     }
 
     public int averageSalary() {
@@ -80,13 +90,11 @@ public class EmployeeBook {
     public void changeOfSalary() {
         System.out.println("Проиндексированные зарплаты сотрудников: ");
         int changePercent = 15;
-        int newSalary;
-        String someEmployee = null;
         for (Employee employee : employees) {
             if (employee != null) {
-                newSalary = employee.getSalary() + (employee.getSalary() / 100 * changePercent);
-                someEmployee = employee.getFirstName() + " " + employee.getMiddleName() + " " + employee.getLastName();
-                System.out.println(someEmployee + ": " + newSalary + " рублей");
+               employee.setSalary(employee.getSalary() + (employee.getSalary() / 100 * changePercent));
+               String someEmployee = employee.getFirstName() + " " + employee.getMiddleName() + " " + employee.getLastName();
+                System.out.println(someEmployee + ": " + employee.getSalary() + " рублей");
             }
         }
     }
@@ -142,13 +150,11 @@ public class EmployeeBook {
 
     public void changeOfSalaryInDepartment(int department, int percent) {
         System.out.println("Проиндексированные зарплаты сотрудников на: " + percent + "%" +  " в отделе: " + department);
-        int newSalary;
-        String someEmployee = null;
         for (Employee employee : employees) {
             if (employee != null && department == employee.getDepartment()) {
-                newSalary = employee.getSalary() + (employee.getSalary() / 100 * percent);
-                someEmployee = employee.getFirstName() + " " + employee.getMiddleName() + " " + employee.getLastName();
-                System.out.println(someEmployee + ": " + newSalary + " рублей");
+                employee.setSalary(employee.getSalary() + (employee.getSalary() / 100 * percent));
+                String someEmployee = employee.getFirstName() + " " + employee.getMiddleName() + " " + employee.getLastName();
+                System.out.println(someEmployee + ": " + employee.getSalary() + " рублей");
             }
         }
     }

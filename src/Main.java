@@ -20,7 +20,7 @@ public class Main {
         System.out.println();
         System.out.println("Сумма затран на зарплаты в месяц: " + employeeBook.sumOfSalaries() + " рублей");
         System.out.println();
-        employeeBook.employeeWithMinSalary();
+        employeeBook.printEmployeeWithMinSalary();
         System.out.println();
         employeeBook.employeeWithMaxSalary();
         System.out.println();
